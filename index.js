@@ -43,7 +43,6 @@ const jointPath = path.posix.join(basePath, '**/.git');
 console.log(FgMagenta + 'Updating files on path: ' + Reset + jointPath);
 (0, glob_1.glob)(jointPath, { ignore: ['node_modules/**', 'updater/.git', '.git'] })
     .then((res) => {
-    console.log(res);
     res.forEach(item => {
         const dir = path.parse(item).dir;
         const git = (0, simple_git_1.simpleGit)(dir, { binary: 'git' });
