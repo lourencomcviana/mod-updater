@@ -2,7 +2,14 @@ import { simpleGit, SimpleGit } from 'simple-git';
 import { glob } from 'glob'
 import * as path from 'path';
 
-const basePath = ".."
+
+
+let basePath = process.cwd()
+if(process.argv[2]){
+    basePath = process.argv[2]
+}else{
+    console.log('no base path passed, default is execution path')
+}
 
 
 const jointPath = path.posix.join(basePath,'**/.git');

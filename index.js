@@ -26,7 +26,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const simple_git_1 = require("simple-git");
 const glob_1 = require("glob");
 const path = __importStar(require("path"));
-const basePath = "..";
+let basePath = process.cwd();
+if (process.argv[2]) {
+    basePath = process.argv[2];
+}
+else {
+    console.log('no base path passed, default is execution path');
+}
 const jointPath = path.posix.join(basePath, '**/.git');
 console.log('search path: ' + jointPath);
 (0, glob_1.glob)(jointPath, { ignore: ['node_modules/**', 'updater/.git'] })
