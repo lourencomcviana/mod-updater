@@ -1,6 +1,6 @@
 import { simpleGit, SimpleGit } from 'simple-git';
-import { glob, globSync, globStream, globStreamSync, Glob } from 'glob'
-import path = require('path');
+import { glob } from 'glob'
+import * as path from 'path';
 
 const basePath = ".."
 
@@ -26,5 +26,4 @@ glob(jointPath, { ignore: ['node_modules/**','updater/.git'] })
         })
     })
 
-//const git: SimpleGit = simpleGit('/some/path', { binary: 'git' });
 
