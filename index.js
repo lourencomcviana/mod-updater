@@ -56,8 +56,14 @@ console.log(FgMagenta + 'Updating files on path: ' + Reset + jointPath);
                         console.error(pullErr);
                     }
                     else {
-                        console.log(BgGreen + 'updated ' + dir + Reset);
-                        console.log(callStatus.summary);
+                        getCurrentBranch().then(branch => {
+                            let branchColor = BgGreen;
+                            if (branch != "main" && branch != "master") {
+                                branchColor = BgYellow;
+                            }
+                            console.log(branchColor + '(' + branch + ')' + BgGreen + 'updated ' + dir + Reset);
+                            console.log(callStatus.summary);
+                        });
                     }
                 });
             }
@@ -65,5 +71,10 @@ console.log(FgMagenta + 'Updating files on path: ' + Reset + jointPath);
                 console.log(BgYellow + FgBlack + 'is not clean ' + dir + Reset);
             }
         });
+        async function getCurrentBranch() {
+            const branchSummary = await git.branchLocal();
+            console.log('Branch atual:', branchSummary.current);
+            return branchSummary.current;
+        }
     });
 });
