@@ -48,11 +48,13 @@ console.log(FgMagenta + 'Updating files on path: ' + Reset + jointPath);
         const git = (0, simple_git_1.simpleGit)(dir, { binary: 'git' });
         git.status((err, res) => {
             if (err) {
+                console.error(item);
                 console.error(err);
             }
             else if (res.isClean()) {
                 git.pull((pullErr, callStatus) => {
                     if (pullErr) {
+                        console.error(item);
                         console.error(pullErr);
                     }
                     else {

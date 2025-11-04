@@ -27,16 +27,17 @@ glob(jointPath, { ignore: ['node_modules/**','updater/.git', '.git'] })
         res.forEach(item =>{
             const dir = path.parse(item).dir
             const git: SimpleGit = simpleGit(dir, { binary: 'git' });
-            
+
             git.status((err,res) =>{
-                
+
                 if(err) {
+                    console.error(item)
                     console.error(err)
                 }
                 else if(res.isClean()) {
                     git.pull((pullErr, callStatus) =>{
                         if(pullErr){
-                            
+                            console.error(item)
                             console.error(pullErr)
                         } else {
                             getCurrentBranch().then(branch =>{
